@@ -3,6 +3,7 @@ require('./config/config');
 
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// habilitar la carpeta publics
+app.use(express.static(path.resolve(__dirname, '../public')));
+
 //configuracion global de rutas
 app.use( require('./routes/index'));
  
@@ -22,7 +26,6 @@ mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: 
 	if(err) throw err;
 
 	console.log('Base de Datos ONLINE');
-
 });
  
 app.listen(process.env.PORT, () => {
