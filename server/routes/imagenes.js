@@ -26,8 +26,4 @@ app.get('/imagen/:tipo/:img', verificaTokenImg, (req, res) => {
 });
 
 
-
-
-
-
 module.exports = app;
